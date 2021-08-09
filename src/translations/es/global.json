@@ -1,5 +1,13 @@
 {
     "dashboard":{
-        "hello-world": "Hola mundo"
+        "hello-world": "Hola mundo",
+        "input-search-placeholder":"Ingresa una ciudad",
+        "button-search-text": "Buscar"  
+    },
+    "weatherAPI":{
+        "humidity": "Humedad:",
+        "porcent-symbol":"%",
+        "wind": "Viento:",
+        "windMetric": "k/h"
     }
 }

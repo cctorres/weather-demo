@@ -1,15 +1,36 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
+import {  useState } from "react";
+import { useTranslation } from "react-i18next";
+import WheatherApi from "./WheatherApi";
+import "./Dashboard.css";
 
 const Dashboard = () => {
-    const [t, i18n] = useTranslation("global");
-    return (
-        <div>
-            <button onClick={() => i18n.changeLanguage("en")}>En</button>
-            <button onClick={() => i18n.changeLanguage("es")}>Es</button>
-        <h1>{t("dashboard.hello-world")}</h1>
-        </div>
-    )
-}
+  const [city, setCity] = useState("");
+  const [searchValue, setSearchValue] = useState("");
+  const [t, i18n] = useTranslation("global");
 
-export default Dashboard
+  const handleInputChange = (e: any) => {
+    setCity(e.target.value);
+  };
+
+  const updatePage = (e: any) => {
+    e.preventDefault();
+    setSearchValue(city);
+  };
+  return (
+    <div className="dashboard-container">
+      <h1>{t("dashboard.hello-world")}</h1>
+      <form className="form-container" onSubmit={updatePage}>
+        <input
+          type="text"
+          name="city"
+          onChange={handleInputChange}
+          placeholder={t("dashboard.input-search-placeholder")}
+        />
+        <button className="search-button" >{t("dashboard.button-search-text")}</button>
+      </form>
+      {searchValue.length > 0 ? <WheatherApi city={searchValue} /> : <div></div>}
+    </div>
+  );
+};
+
+export default Dashboard;

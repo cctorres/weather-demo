@@ -1,38 +1,103 @@
-.App {
-  text-align: center;
+:root{
+  --text-color: #070020;
+  --bg-color: #ffffff;
+  --line-color: #c9c7c7;
+  --card-bg-color: #eeeeee;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.theme-dark{
+  --text-color: #ffffff;
+  --bg-color: #070020;  
+  --line-color: #021944;  
+  --card-bg-color: #03000f;;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.header{
+  display: grid;
+  grid-template-columns: 80% auto;
+  align-items: center;
+  background-color: royalblue;
+  height: 5vh;
+  color: white;
+  font-weight: bolder;
+  padding: 0 3%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header-buttons{
   display: flex;
-  flex-direction: column;
+  justify-content: end;
+}
+
+.footer{
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
+  background-color: royalblue;
+  height: 5vh;
 }
 
-.App-link {
-  color: #61dafb;
+h1,h2,h3,h4,h5,h6,p{
+  margin: 0;
+  color: var(--text-color);
+  font-size: small;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.main-content{
+  width: 100vw;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-color);
+  padding: 0;
+  margin: 0;
+}
+
+.theme-button{
+  background-color: var(--bg-color);
+  border-radius: 1rem;
+  border: none;
+}
+
+.button{
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-size: 1.1rem;
+  border-radius: 1rem;
+  border: none;
+}
+
+.search-button{
+  background-color: var(--bg-color);
+  border-radius: 0.5rem;
+  border: none;
+  color:var(--text-color);
+  font-weight: bolder;
+  border: solid 1px royalblue;
+  padding: 0.5% 2%;
+  margin: 0 2%;
+}
+
+.theme-button:hover{ 
+  box-shadow: 10px 5px 30px var(--line-color);
+}
+
+.button:hover{ 
+  box-shadow: 10px 5px 30px var(--line-color);
+}
+
+.search-button:hover{
+  background-color: royalblue;
+}
+
+@media (max-width: 600px) {
+  .header{    
+  grid-template-columns: 60% auto;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .header-buttons{
+    display: flex;
+    flex-direction: row;
   }
 }
