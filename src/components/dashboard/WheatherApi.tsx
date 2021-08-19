@@ -25,7 +25,7 @@ interface IForecast {
 }
 
 const WheatherApi = (arg: dataArgs) => {
-  const [t, i18n] = useTranslation("global");
+  const [t] = useTranslation("global");
   const [currentWeather, setCurrentWeather] = useState<ICurrentWeather>({
     cityCountry: "",
     icon: "",
@@ -124,8 +124,7 @@ const WheatherApi = (arg: dataArgs) => {
                 <p>{currentWeather.dt}</p>
                 <p>
                   {t("weatherAPI.humidity")}
-                  {currentWeather.humidity}
-                  {t("weatherAPI.porcent-symbol")}
+                  {currentWeather.humidity}%
                 </p>
                 <p>
                   {t("weatherAPI.wind")}

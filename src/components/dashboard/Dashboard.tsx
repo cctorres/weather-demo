@@ -6,7 +6,7 @@ import "./Dashboard.css";
 const Dashboard = () => {
   const [city, setCity] = useState("");
   const [searchValue, setSearchValue] = useState("");
-  const [t, i18n] = useTranslation("global");
+  const [t] = useTranslation("global");
 
   const handleInputChange = (e: any) => {
     setCity(e.target.value);
@@ -18,15 +18,15 @@ const Dashboard = () => {
   };
   return (
     <div className="dashboard-container">
-      <h1>{t("dashboard.hello-world")}</h1>
+      <h1>{t("dashboard.helloWorld")}</h1>
       <form className="form-container" onSubmit={updatePage}>
         <input
           type="text"
           name="city"
           onChange={handleInputChange}
-          placeholder={t("dashboard.input-search-placeholder")}
+          placeholder={t("dashboard.inputSearchPlaceholder")}
         />
-        <button className="search-button" >{t("dashboard.button-search-text")}</button>
+        <button className="search-button" >{t("dashboard.buttonSearchText")}</button>
       </form>
       {searchValue.length > 0 ? <WheatherApi city={searchValue} /> : <div></div>}
     </div>

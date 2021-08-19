@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Dashboard from "./components/dashboard/Dashboard";
 import "./App.css";
 import Translator from "./components/translator/Translator";
+import Footer from "./components/Footer/Footer";
 
 const App = () => {
   const getTheme = () => {
@@ -33,7 +34,7 @@ const App = () => {
       <div className="main-content">
         <Dashboard />
       </div>
-      <div className="footer">CCTorres</div>
+      <Footer/>
     </div>
   );
 };

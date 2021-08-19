@@ -1,13 +1,15 @@
 {
     "dashboard":{
-        "hello-world": "Hello world",
-        "input-search-placeholder":"Type a city",
-        "button-search-text": "Search"        
+        "helloWorld": "Hello world",
+        "inputSearchPlaceholder":"Type a city",
+        "buttonSearchText": "Search"        
     },
     "weatherAPI":{
         "humidity": "Humidity: ",
-        "porcent-symbol":"%",
         "wind": "Wind: ",
         "windMetric": "k/h"
+    },
+    "footer":{
+        "footerText": "Created by CCtorres"
     }
 }

@@ -1,13 +1,15 @@
 {
     "dashboard":{
-        "hello-world": "你好世界",
-        "input-search-placeholder":"写一个城市",
-        "button-search-text": "搜索"        
+        "helloWorld": "你好世界",
+        "inputSearchPlaceholder":"写一个城市",
+        "buttonSearchText": "搜索"        
     },
     "weatherAPI":{
         "humidity": "湿度: ",
-        "porcent-symbol":"%",
         "wind": "风: ",
         "windMetric": "公里/小时"
+    },
+    "footer":{
+        "footerText": "创建者 CCtorres"
     }
 }
