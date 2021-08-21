@@ -7,7 +7,9 @@
     "weatherAPI":{
         "humidity": "Humidity: ",
         "wind": "Wind: ",
-        "windMetric": "k/h"
+        "windMetric": "k/h",
+        "min": "Min: ",
+        "max": "Max: "
     },
     "footer":{
         "footerText": "Created by CCtorres"

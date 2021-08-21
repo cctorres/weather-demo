@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Dashboard from "./components/dashboard/Dashboard";
-import "./App.css";
+import Footer from "./components/footer/Footer";
+import Header from "./components/header/Header";
 import Translator from "./components/translator/Translator";
-import Footer from "./components/Footer/Footer";
+import "./App.css";
 
 const App = () => {
   const getTheme = () => {
@@ -16,21 +17,19 @@ const App = () => {
 
   return (
     <div className={theme ? "theme-dark" : ""}>
-      <div className="header">
-        <div>WeatherAPI</div>
-        <div className="header-buttons">
+      <Header/>
+      <div className="app-buttons">
           {theme ? (
-            <button className="theme-button" onClick={() => setTheme(!theme)}>
+            <button className="button" onClick={() => setTheme(!theme)}>
               ⛅
             </button>
           ) : (
-            <button className="theme-button" onClick={() => setTheme(!theme)}>
+            <button className="button" onClick={() => setTheme(!theme)}>
               🌙
             </button>
           )}
           <Translator />
         </div>
-      </div>
       <div className="main-content">
         <Dashboard />
       </div>

@@ -12,31 +12,22 @@
   --card-bg-color: #03000f;;
 }
 
-.header{
-  display: grid;
-  grid-template-columns: 80% auto;
-  align-items: center;
-  background-color: royalblue;
-  height: 5vh;
-  color: white;
-  font-weight: bolder;
-  padding: 0 3%;
-}
-
-.header-buttons{
-  display: flex;
-  justify-content: end;
-}
-
 h1,h2,h3,h4,h5,h6,p{
   margin: 0;
   color: var(--text-color);
   font-size: small;
 }
 
+.app-buttons{
+  display: flex;
+  justify-content: center;
+  padding: 1%;
+  background-color: var(--bg-color);
+}
+
 .main-content{
   width: 100vw;
-  height: 90vh;
+  height: 75vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,18 +36,14 @@ h1,h2,h3,h4,h5,h6,p{
   margin: 0;
 }
 
-.theme-button{
-  background-color: var(--bg-color);
-  border-radius: 1rem;
-  border: none;
-}
-
 .button{
-  background-color: var(--bg-color);
+  background-color: var(--line-color);
   color: var(--text-color);
   font-size: 1.1rem;
   border-radius: 1rem;
   border: none;
+  cursor: pointer;  
+  height: 4vh;
 }
 
 .search-button{
@@ -68,10 +55,7 @@ h1,h2,h3,h4,h5,h6,p{
   border: solid 1px royalblue;
   padding: 0.5% 2%;
   margin: 0 2%;
-}
-
-.theme-button:hover{ 
-  box-shadow: 10px 5px 30px var(--line-color);
+  cursor: pointer;
 }
 
 .button:hover{ 
@@ -80,15 +64,4 @@ h1,h2,h3,h4,h5,h6,p{
 
 .search-button:hover{
   background-color: royalblue;
-}
-
-@media (max-width: 600px) {
-  .header{    
-  grid-template-columns: 60% auto;
-  }
-  
-  .header-buttons{
-    display: flex;
-    flex-direction: row;
-  }
 }

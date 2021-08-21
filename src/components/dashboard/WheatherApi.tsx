@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import "./WeatherApi.css";
 
-type dataArgs = {
+type props = {
   city: String;
 };
 
@@ -24,7 +24,7 @@ interface IForecast {
   minC: string;
 }
 
-const WheatherApi = (arg: dataArgs) => {
+const WheatherApi = (prop: props) => {
   const [t] = useTranslation("global");
   const [currentWeather, setCurrentWeather] = useState<ICurrentWeather>({
     cityCountry: "",
@@ -37,33 +37,16 @@ const WheatherApi = (arg: dataArgs) => {
     condition: "",
   });
 
-  const [forecast0, setForecast0] = useState<IForecast>({
-    date: "",
-    icon: "",
-    maxC: "",
-    minC: "",
-  });
-
-  const [forecast1, setForecast1] = useState<IForecast>({
-    date: "",
-    icon: "",
-    maxC: "",
-    minC: "",
-  });
-
-  const [forecast2, setForecast2] = useState<IForecast>({
-    date: "",
-    icon: "",
-    maxC: "",
-    minC: "",
-  });
+  const [forecasts, setForecasts] = useState<IForecast[]>([]);
 
   const fetchAPI = async () => {
     var language = "";
     language = localStorage.getItem("language") || "en";
     const url =
-      "https://api.weatherapi.com/v1/forecast.json?key="+process.env.REACT_APP_WEATHER_API+"&q=" +
-      arg.city +
+      "https://api.weatherapi.com/v1/forecast.json?key=" +
+      process.env.REACT_APP_WEATHER_API +
+      "&q=" +
+      prop.city +
       "&days=5&aqi=yes&alerts=yes&lang=" +
       language;
     const response = await fetch(url);
@@ -99,14 +82,13 @@ const WheatherApi = (arg: dataArgs) => {
       maxC: responseJSON.forecast.forecastday[2].day.maxtemp_c,
       minC: responseJSON.forecast.forecastday[2].day.mintemp_c,
     };
-    setForecast0(forecast0);
-    setForecast1(forecast1);
-    setForecast2(forecast2);
+    setForecasts([forecast0, forecast1, forecast2]);
     setCurrentWeather(currentWeather);
+    console.log(responseJSON)
   };
   useEffect(() => {
     fetchAPI();
-  }, [arg.city, currentWeather.icon]);
+  }, [prop.city, currentWeather.icon]);
 
   if (currentWeather.icon.length > 1) {
     return (
@@ -115,10 +97,10 @@ const WheatherApi = (arg: dataArgs) => {
           <div className="current-weather">
             <div className="current-image">
               <p>{currentWeather.cityCountry}</p>
-              <img src={currentWeather.icon} alt="casa"></img>
+              <img src={currentWeather.icon} alt="casa"></img>              
+              <p>{currentWeather.condition}</p>
             </div>
             <div className="current-weather-info">
-              <p>{currentWeather.condition}</p>
               <p className="title">{currentWeather.celsius}°C</p>
               <div className="another-info">
                 <p>{currentWeather.dt}</p>
@@ -136,33 +118,18 @@ const WheatherApi = (arg: dataArgs) => {
           </div>
           <div className="another-weather">
             <div className="forecast-weather">
-              <div className="another-weather-cards">
-                <p>{forecast0.date}</p>
-                <div className="another-weather-card-img">
-                  <img src={forecast0.icon} alt="icon"></img>
-                </div>
-                <p>
-                  {forecast0.minC}°C - {forecast0.maxC}°C
-                </p>
-              </div>
-              <div className="another-weather-cards">
-                <p>{forecast1.date}</p>
-                <div className="another-weather-card-img">
-                  <img src={forecast1.icon} alt="icon"></img>
-                </div>
-                <p>
-                  {forecast1.minC}°C - {forecast1.maxC}°C
-                </p>
-              </div>
-              <div className="another-weather-cards">
-                <p>{forecast2.date}</p>
-                <div className="another-weather-card-img">
-                  <img src={forecast2.icon} alt="icon"></img>
-                </div>
-                <p>
-                  {forecast2.minC}°C - {forecast2.maxC}°C
-                </p>
-              </div>
+              {forecasts.map((forecast) => {
+                return (
+                  <div className="another-weather-cards">
+                    <p>{forecast.date}</p>
+                    <div className="another-weather-card-img">
+                      <img src={forecast.icon} alt="icon"></img>
+                    </div>
+                    <p>{t("weatherAPI.min")} {forecast.minC}°C</p>
+                    <p>{t("weatherAPI.max")} {forecast.maxC}°C</p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
