@@ -50,7 +50,7 @@
 .another-weather {
   display: flex;
   width: auto;
-  margin: 5%;
+  margin: 0 5%;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;

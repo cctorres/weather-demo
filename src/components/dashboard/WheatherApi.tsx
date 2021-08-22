@@ -39,8 +39,9 @@ const WheatherApi = (prop: props) => {
 
   const [forecasts, setForecasts] = useState<IForecast[]>([]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const fetchAPI = async () => {
-    var language = "";
+    let language = "";
     language = localStorage.getItem("language") || "en";
     const url =
       "https://api.weatherapi.com/v1/forecast.json?key=" +
@@ -88,7 +89,7 @@ const WheatherApi = (prop: props) => {
   };
   useEffect(() => {
     fetchAPI();
-  }, [prop.city, currentWeather.icon]);
+  }, [fetchAPI, prop.city]);
 
   if (currentWeather.icon.length > 1) {
     return (
