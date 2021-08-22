@@ -1,25 +1,19 @@
-import {useState} from "react";
 import { useTranslation } from "react-i18next";
 import "./Translator.css";
 
 const Translator = () => {
   const [t, i18n] = useTranslation("global");
-  const [selectedLanguage, setSelectedLanguage] = useState("English ")
 
-  const changeLanguage = (lang: string, language: string) => {
-    i18n.changeLanguage(lang) && localStorage.setItem("language", lang)
-    setSelectedLanguage(language)
+  const handleChange = (event:any) => {
+    i18n.changeLanguage(event.target.value)
   }
   return (
-    <div className="dropdown">
-      <div className="dropdown-select">
-        <span className="select">{selectedLanguage} ▼</span>
-      </div>
-      <div className="dropdown-list">
-        <button className="dropdown-list-item" onClick={() => changeLanguage("en", "English ")}>English</button>
-        <button className="dropdown-list-item" onClick={() => changeLanguage("es", "Español ")}>Español</button>
-        <button className="dropdown-list-item" onClick={() => changeLanguage("ch", "中文" )}>中文</button>
-      </div>
+    <div className="translator-container">
+      <select className="dropdown-list-item" onChange={handleChange}>
+        <option className="dropdown-list-item" selected value="en">English</option>
+        <option className="dropdown-list-item" value="es">Español</option>
+        <option className="dropdown-list-item" value="ch">中文</option>
+      </select>
     </div>
   );
 };
