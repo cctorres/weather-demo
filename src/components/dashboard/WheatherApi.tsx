@@ -1,28 +1,12 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import ICurrentWeather from "../../interfaces/ICurrentWeather";
+import IForecast from "../../interfaces/IForecast";
 import "./WeatherApi.css";
 
 type props = {
   city: String;
 };
-
-interface ICurrentWeather {
-  cityCountry: string;
-  icon: string;
-  dt: string;
-  celsius: string;
-  humidity: string;
-  wind: string;
-  windDir: string;
-  condition: string;
-}
-
-interface IForecast {
-  date: string;
-  icon: string;
-  maxC: string;
-  minC: string;
-}
 
 const WheatherApi = (prop: props) => {
   const [t] = useTranslation("global");
@@ -64,28 +48,15 @@ const WheatherApi = (prop: props) => {
       condition: responseJSON.current.condition.text,
     };
 
-    let forecast0 = {
-      date: responseJSON.forecast.forecastday[0].date,
-      icon: responseJSON.forecast.forecastday[0].day.condition.icon,
-      maxC: responseJSON.forecast.forecastday[0].day.maxtemp_c,
-      minC: responseJSON.forecast.forecastday[0].day.mintemp_c,
-    };
+    let forecast: IForecast[] = responseJSON.forecast.forecastday.map((currentForecast: any) => ({
+      date: currentForecast.date,
+      icon: currentForecast.day.condition.icon,
+      maxC: currentForecast.day.maxtemp_c,
+      minC: currentForecast.day.mintemp_c,
+    }));
 
-    let forecast1 = {
-      date: responseJSON.forecast.forecastday[1].date,
-      icon: responseJSON.forecast.forecastday[1].day.condition.icon,
-      maxC: responseJSON.forecast.forecastday[1].day.maxtemp_c,
-      minC: responseJSON.forecast.forecastday[1].day.mintemp_c,
-    };
-    let forecast2 = {
-      date: responseJSON.forecast.forecastday[2].date,
-      icon: responseJSON.forecast.forecastday[2].day.condition.icon,
-      maxC: responseJSON.forecast.forecastday[2].day.maxtemp_c,
-      minC: responseJSON.forecast.forecastday[2].day.mintemp_c,
-    };
-    setForecasts([forecast0, forecast1, forecast2]);
+    setForecasts(forecast);
     setCurrentWeather(currentWeather);
-    console.log(responseJSON)
   };
   useEffect(() => {
     fetchAPI();
@@ -98,7 +69,7 @@ const WheatherApi = (prop: props) => {
           <div className="current-weather">
             <div className="current-image">
               <p>{currentWeather.cityCountry}</p>
-              <img src={currentWeather.icon} alt="casa"></img>              
+              <img src={currentWeather.icon} alt="casa"></img>
               <p>{currentWeather.condition}</p>
             </div>
             <div className="current-weather-info">
@@ -126,8 +97,12 @@ const WheatherApi = (prop: props) => {
                     <div className="another-weather-card-img">
                       <img src={forecast.icon} alt="icon"></img>
                     </div>
-                    <p>{t("weatherAPI.min")} {forecast.minC}°C</p>
-                    <p>{t("weatherAPI.max")} {forecast.maxC}°C</p>
+                    <p>
+                      {t("weatherAPI.min")} {forecast.minC}°C
+                    </p>
+                    <p>
+                      {t("weatherAPI.max")} {forecast.maxC}°C
+                    </p>
                   </div>
                 );
               })}
@@ -137,7 +112,7 @@ const WheatherApi = (prop: props) => {
       </>
     );
   } else {
-    return <div className="lds-dual-ring"></div>;
+    return <div className="spinner"></div>;
   }
 };
 

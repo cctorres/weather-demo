@@ -84,23 +84,16 @@
   width: 3rem;
   height: 4rem;
 }
-.lds-dual-ring {
+.spinner {
+  border: 0.5rem solid var(--text-color);
   display: inline-block;
-  width: 80px;
-  height: 80px;
-}
-.lds-dual-ring:after {
-  content: " ";
-  display: block;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
+  width: 5rem;
+  height: 5rem;
   border-radius: 50%;
-  border: 6px solid var(--text-color);
-  border-color: var(--text-color) transparent var(--text-color) transparent;
-  animation: lds-dual-ring 1.2s linear infinite;
+  border-color: var(--text-color) var(--bg-color);
+  animation: spin 1s ease infinite;
 }
-@keyframes lds-dual-ring {
+@keyframes spin {
   0% {
     transform: rotate(0deg);
   }
