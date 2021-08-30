@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Dashboard from "./components/dashboard/Dashboard";
+import Dashboard from "./views/dashboard/Dashboard";
 import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
 import Translator from "./components/translator/Translator";
@@ -17,23 +17,23 @@ const App = () => {
 
   return (
     <div className={theme ? "theme-dark" : ""}>
-      <Header/>
+      <Header />
       <div className="app-buttons">
-          {theme ? (
-            <button className="button" onClick={() => setTheme(!theme)}>
-              ⛅
-            </button>
-          ) : (
-            <button className="button" onClick={() => setTheme(!theme)}>
-              🌙
-            </button>
-          )}
-          <Translator />
-        </div>
+        {theme ? (
+          <button className="button" onClick={() => setTheme(!theme)}>
+            ⛅
+          </button>
+        ) : (
+          <button className="button" onClick={() => setTheme(!theme)}>
+            🌙
+          </button>
+        )}
+        <Translator />
+      </div>
       <div className="main-content">
         <Dashboard />
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

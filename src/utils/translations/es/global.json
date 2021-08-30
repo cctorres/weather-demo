@@ -1,0 +1,17 @@
+{
+  "dashboard": {
+    "helloWorld": "¡Hola mundo!",
+    "inputSearchPlaceholder": "Ingresa una ciudad",
+    "buttonSearchText": "Buscar"
+  },
+  "weatherAPI": {
+    "humidity": "Humedad:",
+    "wind": "Viento:",
+    "windMetric": "k/h",
+    "min": "Mín: ",
+    "max": "Máx: "
+  },
+  "footer": {
+    "footerText": "Creado por CCtorres"
+  }
+}

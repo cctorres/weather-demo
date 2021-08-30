@@ -1,6 +1,6 @@
-import {  useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import WheatherApi from "./WheatherApi";
+import WheatherApi from "../../components/weatherAPI/WheatherApi";
 import "./Dashboard.css";
 
 const Dashboard = () => {
@@ -26,9 +26,15 @@ const Dashboard = () => {
           onChange={handleInputChange}
           placeholder={t("dashboard.inputSearchPlaceholder")}
         />
-        <button className="search-button" >{t("dashboard.buttonSearchText")}</button>
+        <button className="search-button">
+          {t("dashboard.buttonSearchText")}
+        </button>
       </form>
-      {searchValue.length > 0 ? <WheatherApi city={searchValue} /> : <div></div>}
+      {searchValue.length > 0 ? (
+        <WheatherApi city={searchValue} />
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 };
