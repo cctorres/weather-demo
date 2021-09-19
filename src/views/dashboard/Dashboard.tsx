@@ -16,6 +16,7 @@ const Dashboard = () => {
     e.preventDefault();
     setSearchValue(city);
   };
+  
   return (
     <div className="dashboard-container">
       <h1>{t("dashboard.helloWorld")}</h1>

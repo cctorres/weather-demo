@@ -62,7 +62,7 @@ const WheatherApi = (prop: props) => {
   };
   useEffect(() => {
     fetchAPI();
-  }, [fetchAPI, prop.city]);
+  }, [prop.city]);
 
   if (currentWeather.icon.length > 1) {
     return (

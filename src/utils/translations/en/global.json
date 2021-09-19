@@ -1,7 +1,7 @@
 {
   "dashboard": {
     "helloWorld": "Hello world!",
-    "inputSearchPlaceholder": "Type a city",
+    "inputSearchPlaceholder": "City,Country",
     "buttonSearchText": "Search"
   },
   "weatherAPI": {
