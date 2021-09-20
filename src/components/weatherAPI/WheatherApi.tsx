@@ -36,6 +36,9 @@ const WheatherApi = (prop: props) => {
       language;
     const response = await fetch(url);
     const responseJSON = await response.json();
+
+    console.log(responseJSON.error);
+
     let currentWeather = {
       cityCountry:
         responseJSON.location.name + "," + responseJSON.location.country,

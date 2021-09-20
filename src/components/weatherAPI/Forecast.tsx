@@ -13,7 +13,7 @@ const Forecast = (prop: props) => {
       <div className="forecast-weather">
         {prop.forecasts.map((forecast) => {
           return (
-            <div className="another-weather-cards">
+            <div className="another-weather-cards" key={forecast.date}>
               <p>{forecast.date}</p>
               <div className="another-weather-card-img">
                 <img src={forecast.icon} alt="icon"></img>

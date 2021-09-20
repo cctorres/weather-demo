@@ -1,13 +1,11 @@
 .weather-api-container {
   display: grid;
   grid-template-columns: 35% auto;
-  width: auto;
+  width: 60%;
   height: 50vh;
   text-align: center;
   justify-content: center;
-  border-radius: 2rem;
-  box-shadow: 5px 2px 5px var(--line-color);
-  padding: 3%;
+  margin: 2rem 0;
 }
 
 .current-weather {
@@ -61,14 +59,15 @@
   width: 100%;
   grid-template-columns: 33% 33% auto;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   margin: 0 5%;
+  gap: 0.7rem;
 }
 
 .another-weather-cards {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   flex-direction: column;
   width: 6rem;
   height: 7rem;
@@ -84,6 +83,7 @@
   width: 3rem;
   height: 4rem;
 }
+
 .spinner {
   border: 0.5rem solid var(--text-color);
   display: inline-block;
@@ -102,17 +102,19 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 500px) {
   .weather-api-container {
     display: grid;
     grid-template-rows: 35% auto;
     grid-template-columns: auto;
     height: 55vh;
+    width: 100vw;
   }
 
   .current-weather {
     flex-direction: row;
     height: 10rem;
+    width: 95vw;
   }
 
   .current-image {
