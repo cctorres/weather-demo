@@ -8,6 +8,11 @@
   margin: 2rem 0;
 }
 
+a {
+  margin: 1rem;
+  color: var(--text-color);
+}
+
 .current-weather {
   display: flex;
   flex-direction: column;

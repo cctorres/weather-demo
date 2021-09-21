@@ -9,7 +9,8 @@
     "wind": "Viento:",
     "windMetric": "k/h",
     "min": "Mín: ",
-    "max": "Máx: "
+    "max": "Máx: ",
+    "cityError": "Ciudad no encontrada. Consulte la norma ISO 3166 para conocer los códigos de estado o de país."
   },
   "footer": {
     "footerText": "Creado por CCtorres"

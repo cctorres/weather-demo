@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import ICurrentWeather from "../../utils/interfaces/ICurrentWeather";
 import IForecast from "../../utils/interfaces/IForecast";
 import Forecast from "./Forecast";
@@ -10,6 +11,8 @@ type props = {
 };
 
 const WheatherApi = (prop: props) => {
+  const [t] = useTranslation("global");
+
   const [currentWeather, setCurrentWeather] = useState<ICurrentWeather>({
     cityCountry: "",
     icon: "",
@@ -25,8 +28,7 @@ const WheatherApi = (prop: props) => {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const fetchAPI = async () => {
-    let language = "";
-    language = localStorage.getItem("language") || "en";
+    let language = localStorage.getItem("language") || "en";
     const url =
       "https://api.weatherapi.com/v1/forecast.json?key=" +
       process.env.REACT_APP_WEATHER_API +
@@ -36,48 +38,72 @@ const WheatherApi = (prop: props) => {
       language;
     const response = await fetch(url);
     const responseJSON = await response.json();
+    if (responseJSON.error) {
+      let currentWeather = {
+        cityCountry: "",
+        icon: "",
+        dt: "",
+        celsius: "",
+        humidity: "",
+        wind: "",
+        windDir: "",
+        condition: responseJSON.error.message,
+      };
 
-    console.log(responseJSON.error);
+      setCurrentWeather(currentWeather);
+    } else {
+      let currentWeather = {
+        cityCountry:
+          responseJSON.location.name + "," + responseJSON.location.country,
+        icon: responseJSON.current.condition.icon,
+        dt: responseJSON.location.localtime,
+        celsius: responseJSON.current.temp_c,
+        humidity: responseJSON.current.humidity,
+        wind: responseJSON.current.wind_kph,
+        windDir: responseJSON.current.wind_dir,
+        condition: responseJSON.current.condition.text,
+      };
 
-    let currentWeather = {
-      cityCountry:
-        responseJSON.location.name + "," + responseJSON.location.country,
-      icon: responseJSON.current.condition.icon,
-      dt: responseJSON.location.localtime,
-      celsius: responseJSON.current.temp_c,
-      humidity: responseJSON.current.humidity,
-      wind: responseJSON.current.wind_kph,
-      windDir: responseJSON.current.wind_dir,
-      condition: responseJSON.current.condition.text,
-    };
+      let forecast: IForecast[] = responseJSON.forecast.forecastday.map(
+        (currentForecast: any) => ({
+          date: currentForecast.date,
+          icon: currentForecast.day.condition.icon,
+          maxC: currentForecast.day.maxtemp_c,
+          minC: currentForecast.day.mintemp_c,
+        })
+      );
 
-    let forecast: IForecast[] = responseJSON.forecast.forecastday.map(
-      (currentForecast: any) => ({
-        date: currentForecast.date,
-        icon: currentForecast.day.condition.icon,
-        maxC: currentForecast.day.maxtemp_c,
-        minC: currentForecast.day.mintemp_c,
-      })
-    );
-
-    setForecasts(forecast);
-    setCurrentWeather(currentWeather);
+      setCurrentWeather(currentWeather);
+      setForecasts(forecast);
+    }
   };
   useEffect(() => {
     fetchAPI();
   }, [prop.city]);
 
-  if (currentWeather.icon.length > 1) {
+  if (currentWeather.condition === "No matching location found.") {
     return (
-      <>
-        <div className="weather-api-container">
-          <Current currentWeather={currentWeather} />
-          <Forecast forecasts={forecasts} />
-        </div>
-      </>
+      <a
+        href="https://www.iso.org/obp/ui/#search"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {t("weatherAPI.cityError")}
+      </a>
     );
   } else {
-    return <div className="spinner"></div>;
+    if (currentWeather.icon.length > 1) {
+      return (
+        <>
+          <div className="weather-api-container">
+            <Current currentWeather={currentWeather} />
+            <Forecast forecasts={forecasts} />
+          </div>
+        </>
+      );
+    } else {
+      return <div className="spinner"></div>;
+    }
   }
 };
 

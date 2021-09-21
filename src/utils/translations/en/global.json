@@ -9,7 +9,8 @@
     "wind": "Wind: ",
     "windMetric": "k/h",
     "min": "Min: ",
-    "max": "Max: "
+    "max": "Max: ",
+    "cityError": "City not found. Please, refer to ISO 3166 for the state codes or country codes."
   },
   "footer": {
     "footerText": "Created by CCtorres"

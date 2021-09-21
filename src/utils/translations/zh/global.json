@@ -9,7 +9,8 @@
     "wind": "风: ",
     "windMetric": "公里/小时",
     "min": "最低: ",
-    "max": "最大值: "
+    "max": "最大值: ",
+    "cityError": "未找到城市。請參閱 ISO 3166 以了解州代碼或國家代碼。"
   },
   "footer": {
     "footerText": "创建者 CCtorres"
