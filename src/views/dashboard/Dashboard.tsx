@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import WheatherApi from "../../components/weatherAPI/WheatherApi";
+import mockup from '../../utils/assets/images/mockup-image.jpg';
 import "./Dashboard.css";
+
 
 const Dashboard = () => {
   const [city, setCity] = useState("");
@@ -16,10 +18,13 @@ const Dashboard = () => {
     e.preventDefault();
     setSearchValue(city);
   };
-  
+
   return (
     <div className="dashboard-container">
-      <h1>{t("dashboard.helloWorld")}</h1>
+      <div className="dashboard-title">
+        <h1>Real-Time</h1>
+        <h2>Weather forecast & more</h2>
+      </div>
       <form className="form-container" onSubmit={updatePage}>
         <input
           type="text"
@@ -34,7 +39,9 @@ const Dashboard = () => {
       {searchValue.length > 0 ? (
         <WheatherApi city={searchValue} />
       ) : (
-        <div></div>
+        <div className="mockup-weather">
+          <img src={mockup} alt=""></img>
+        </div>
       )}
     </div>
   );

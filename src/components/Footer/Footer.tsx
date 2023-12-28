@@ -5,7 +5,7 @@ const Footer = () => {
   const [t] = useTranslation("global");
   return (
     <>
-      <div className="footer">{t("footer.footerText")}</div>
+      <div className="footer">{t("footer.footerText")} <a href="https://www.weatherapi.com/" title="Weather API">WeatherAPI</a> </div>
     </>
   );
 };

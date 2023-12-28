@@ -1,0 +1,65 @@
+.theme-toggle-light,
+.theme-toggle-dark {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bg-color-opacity);
+  width: 80px;
+  height: 40px;
+  border-radius: 2rem;
+  transition: background-color 0.5s ease;
+  position: relative;
+  cursor: pointer;
+}
+
+.theme-toggle-light picture,
+.theme-toggle-dark picture {
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  border-radius: 50%;
+  transition: left 0.5s ease;
+  background-color: rgba(0, 0, 0, 0.513);
+}
+
+.theme-toggle-light picture {
+  left: 45px;
+}
+
+.theme-toggle-dark picture {
+  left: 5px;
+}
+
+.theme-toggle-light .light-button,
+.theme-toggle-dark .dark-button {
+  background: var(--bg-color);
+  height: 30px;
+  width: 30px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border-radius: 50%;
+  border: var(--line-color) 2px solid;
+  margin: 0 5px;
+  transition: opacity 1.5s ease;
+}
+
+.theme-toggle-light .dark-button,
+.theme-toggle-dark .light-button {
+  opacity: 0;
+  height: 30px;
+  width: 30px;
+  margin: 0 5px;
+}
+
+.theme-toggle-dark .dark-button,
+.theme-toggle-light .light-button {
+  background: var(--bg-color);
+  height: 30px;
+  width: 30px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border-radius: 50%;
+  margin: 0 5px;
+}

@@ -1,7 +1,7 @@
 {
   "dashboard": {
     "helloWorld": "Hello world!",
-    "inputSearchPlaceholder": "City,Country",
+    "inputSearchPlaceholder": "Type a city",
     "buttonSearchText": "Search"
   },
   "weatherAPI": {
@@ -13,6 +13,6 @@
     "cityError": "City not found. Please, refer to ISO 3166 for the state codes or country codes."
   },
   "footer": {
-    "footerText": "Created by CCtorres"
+    "footerText": "Created by CCTorres - Powered by"
   }
 }

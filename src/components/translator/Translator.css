@@ -1,10 +1,72 @@
-.dropdown-list-item {
-  background-color: var(--line-color);
-  color: var(--text-color);
-  padding: 5%;
-  border-radius: 1rem;
-  border: none;
+.translator-container ul {
   cursor: pointer;
   margin: 0;
-  height: 5vh;
+  padding: 0;
+  list-style: none;
+}
+
+.translator-container ul .langSelectedContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--line-color);
+  color: var(--text-color);
+  border-radius: 1rem;
+  height: 40px;
+  width: 90px;
+}
+
+.translator-container ul .langSelectedContainer span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  font-weight: 700;
+}
+
+.translator-container ul li {
+  color: var(--text-color);
+  position: relative;
+  z-index: 3;
+  background: var(--line-color);
+  border-bottom: solid 2px rgba(100, 100, 100, 0.3);
+  padding: 2px 0;
+  opacity: 0.8;
+  margin-left: 12px;
+  margin-right: 12px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.translator-container ul li:hover {
+  border-bottom: solid 2px var(--text-color);
+  opacity: 1;
+  font-weight: 700;
+}
+
+.translator-container ul .dropdown-list-first-li {
+  margin-top: 5px;
+}
+
+.dropdown-list-disable li{
+  display: none;
+}
+
+.translator-container ul img {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  margin: 0 3px;
+}
+
+.translator-container ul svg {
+  width: 15px;
+  height: 15px;
+  color: var(--text-color);
+  margin: 0 3px;
+  transition: all 0.5s;
+}
+
+.dropdown-list-enable svg {
+  transform: rotate(180deg);
 }

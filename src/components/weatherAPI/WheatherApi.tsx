@@ -79,7 +79,7 @@ const WheatherApi = (prop: props) => {
   };
   useEffect(() => {
     fetchAPI();
-  }, [prop.city]);
+  }, [prop.city, fetchAPI]);
 
   if (currentWeather.condition === "No matching location found.") {
     return (
@@ -94,12 +94,10 @@ const WheatherApi = (prop: props) => {
   } else {
     if (currentWeather.icon.length > 1) {
       return (
-        <>
           <div className="weather-api-container">
             <Current currentWeather={currentWeather} />
             <Forecast forecasts={forecasts} />
           </div>
-        </>
       );
     } else {
       return <div className="spinner"></div>;

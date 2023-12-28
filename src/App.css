@@ -1,15 +1,21 @@
 :root {
   --text-color: #070020;
-  --bg-color: #ffffff;
+  --bg-color: #f0f0f0;
+  --bg-color-opacity: #c9c7c7;
+  --bg-color-contrast: #070020;
   --line-color: #c9c7c7;
   --card-bg-color: #eeeeee;
+  --button-hover-color: rgb(100, 150, 250);
 }
 
 .theme-dark {
   --text-color: #ffffff;
   --bg-color: #070020;
+  --bg-color-opacity: #352C5C;
+  --bg-color-contrast: #f0f0f0;
   --line-color: #021944;
-  --card-bg-color: #03000f;
+  --card-bg-color: #03000f;  
+  --button-hover-color: rgb(60 , 100, 200);
 }
 
 h1,
@@ -24,22 +30,30 @@ p {
   font-size: small;
 }
 
-.app-buttons {
+.setting-buttons {
   display: flex;
-  justify-content: center;
+  justify-content: end;
   padding: 1vh;
   background-color: var(--bg-color);
   height: 8vh;
+  gap: 10px;
+}
+
+.content {
+  display: grid;
+  grid-template-rows: 50px auto;
+  justify-content: center;
+  flex-direction: column;
+  background-color: var(--bg-color);
+  height: 90vh;
 }
 
 .main-content {
-  height: 80vh;
   display: flex;
-  align-items: center;
   justify-content: center;
-  background-color: var(--bg-color);
-  padding: 0;
+  padding:  20px 0 0 0;
   margin: 0;
+  max-width: 1084px;
 }
 
 .button {
@@ -52,22 +66,6 @@ p {
   height: 5vh;
 }
 
-.search-button {
-  background-color: var(--bg-color);
-  border-radius: 0.5rem;
-  border: none;
-  color: var(--text-color);
-  font-weight: bolder;
-  border: solid 1px royalblue;
-  padding: 0.5% 2%;
-  margin: 0 2%;
-  cursor: pointer;
-}
-
 .button:hover {
   box-shadow: 10px 5px 30px var(--line-color);
-}
-
-.search-button:hover {
-  background-color: royalblue;
 }

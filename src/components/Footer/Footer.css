@@ -5,4 +5,12 @@
   color: white;
   background-color: royalblue;
   height: 5vh;
+  font-weight: 600;
+}
+
+.footer a {
+  text-decoration: none;
+  margin: 0 0 0 5px;
+  color: white;
+  font-weight: 600;
 }

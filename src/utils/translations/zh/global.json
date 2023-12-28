@@ -1,7 +1,7 @@
 {
   "dashboard": {
     "helloWorld": "你好世界",
-    "inputSearchPlaceholder": "城市，国家",
+    "inputSearchPlaceholder": "写一个城市",
     "buttonSearchText": "搜索"
   },
   "weatherAPI": {
