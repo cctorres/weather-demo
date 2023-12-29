@@ -8,9 +8,11 @@
     "humidity": "Humidity: ",
     "wind": "Wind: ",
     "windMetric": "k/h",
+    "temperature": "Temp:",
     "min": "Min: ",
     "max": "Max: ",
-    "cityError": "City not found. Please, refer to ISO 3166 for the state codes or country codes."
+    "today": "Today",
+    "cityError": "City not found. To know the state or country codes consult the standard"
   },
   "footer": {
     "footerText": "Created by CCTorres - Powered by"

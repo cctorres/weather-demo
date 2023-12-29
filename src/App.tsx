@@ -25,7 +25,6 @@ const App = () => {
     const ulElement = document.querySelector<HTMLElement>('.translator-container ul');
     if(ulElement) {
       if (ulElement.className.includes("enable")) {
-        console.log(ulElement.className)
         ulElement.className = ulElement.className.replace("enable", "disable")
       } 
     }

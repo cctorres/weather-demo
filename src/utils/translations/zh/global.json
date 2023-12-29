@@ -8,9 +8,11 @@
     "humidity": "湿度: ",
     "wind": "风: ",
     "windMetric": "公里/小时",
+    "temperature": "温度:",
     "min": "最低: ",
     "max": "最大值: ",
-    "cityError": "未找到城市。請參閱 ISO 3166 以了解州代碼或國家代碼。"
+    "today": "今天",
+    "cityError": "未找到城市。要了解州或国家/地区代码，请参阅标准"
   },
   "footer": {
     "footerText": "创建者 CCtorres"

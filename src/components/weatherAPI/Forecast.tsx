@@ -1,23 +1,23 @@
+import React from "react";
 import { useTranslation } from "react-i18next";
 import IForecast from "../../utils/interfaces/IForecast";
-import "./WeatherApi.css";
-type props = {
+import "./Forecast.css";
+
+type Props = {
   forecasts: IForecast[];
 };
 
-const Forecast = (prop: props) => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+const Forecast: React.FC<Props> = ({ forecasts }) => {
   const [t] = useTranslation("global");
+
   return (
     <div className="another-weather">
-      <div className="forecast-weather">
-        {prop.forecasts.map((forecast) => {
-          return (
-            <div className="another-weather-cards" key={forecast.date}>
-              <p>{forecast.date}</p>
-              <div className="another-weather-card-img">
-                <img src={forecast.icon} alt="icon"></img>
-              </div>
+      {forecasts.map((forecast, index) => (
+        <div className="another-weather-cards" key={forecast.date}>
+          <h4>{index === 0 ? t("weatherAPI.today") : forecast.date}</h4>
+          <div>
+            <img src={forecast.icon} alt="" />
+            <div className="another-weather-cards-text">
               <p>
                 {t("weatherAPI.min")} {forecast.minC}°C
               </p>
@@ -25,9 +25,9 @@ const Forecast = (prop: props) => {
                 {t("weatherAPI.max")} {forecast.maxC}°C
               </p>
             </div>
-          );
-        })}
-      </div>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };

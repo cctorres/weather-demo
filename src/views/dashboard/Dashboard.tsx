@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 import { useTranslation } from "react-i18next";
 import WheatherApi from "../../components/weatherAPI/WheatherApi";
 import mockup from '../../utils/assets/images/mockup-image.jpg';
@@ -10,11 +10,11 @@ const Dashboard = () => {
   const [searchValue, setSearchValue] = useState("");
   const [t] = useTranslation("global");
 
-  const handleInputChange = (e: any) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCity(e.target.value);
   };
 
-  const updatePage = (e: any) => {
+  const updatePage = (e: FormEvent) => {
     e.preventDefault();
     setSearchValue(city);
   };
@@ -40,7 +40,7 @@ const Dashboard = () => {
         <WheatherApi city={searchValue} />
       ) : (
         <div className="mockup-weather">
-          <img src={mockup} alt=""></img>
+          <img src={mockup} alt=""/>
         </div>
       )}
     </div>

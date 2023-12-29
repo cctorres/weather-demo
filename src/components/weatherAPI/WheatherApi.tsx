@@ -1,60 +1,52 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import ICurrentWeather from "../../utils/interfaces/ICurrentWeather";
 import IForecast from "../../utils/interfaces/IForecast";
+import ICurrentHours from "../../utils/interfaces/ICurrentHours";
 import Forecast from "./Forecast";
 import Current from "./Current";
+import notFound from '../../utils/assets/images/not-found.png';
 import "./WeatherApi.css";
 
-type props = {
-  city: String;
+type Props = {
+  city: string;
 };
 
-const WheatherApi = (prop: props) => {
+const WeatherApi = ({ city }: Props) => {
   const [t] = useTranslation("global");
+  const [error, setError] = useState<boolean>(false);
+  const [forecasts, setForecasts] = useState<IForecast[]>([]);
 
   const [currentWeather, setCurrentWeather] = useState<ICurrentWeather>({
-    cityCountry: "",
+    city: "",
+    country: "",
     icon: "",
     dt: "",
-    celsius: "",
-    humidity: "",
-    wind: "",
+    celsius: 0,
+    humidity: 0,
+    wind: 0,
     windDir: "",
     condition: "",
   });
 
-  const [forecasts, setForecasts] = useState<IForecast[]>([]);
+  const [currentHours, setCurrentHours] = useState<ICurrentHours>({
+    morning: 0,
+    afternoon: 0,
+    night: 0,
+  });
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const fetchAPI = async () => {
+  const fetchWeatherData = useCallback(async () => {
     let language = localStorage.getItem("language") || "en";
-    const url =
-      "https://api.weatherapi.com/v1/forecast.json?key=" +
-      process.env.REACT_APP_WEATHER_API +
-      "&q=" +
-      prop.city +
-      "&days=5&aqi=yes&alerts=yes&lang=" +
-      language;
+    const url = `https://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_WEATHER_API}&q=${city}&days=5&aqi=yes&alerts=yes&lang=${language}`;
     const response = await fetch(url);
+
     const responseJSON = await response.json();
     if (responseJSON.error) {
-      let currentWeather = {
-        cityCountry: "",
-        icon: "",
-        dt: "",
-        celsius: "",
-        humidity: "",
-        wind: "",
-        windDir: "",
-        condition: responseJSON.error.message,
-      };
-
-      setCurrentWeather(currentWeather);
+      setError(true);
     } else {
-      let currentWeather = {
-        cityCountry:
-          responseJSON.location.name + "," + responseJSON.location.country,
+      let currentWeatherData = {
+        city: responseJSON.location.name,
+        country: responseJSON.location.country,
         icon: responseJSON.current.condition.icon,
         dt: responseJSON.location.localtime,
         celsius: responseJSON.current.temp_c,
@@ -64,7 +56,7 @@ const WheatherApi = (prop: props) => {
         condition: responseJSON.current.condition.text,
       };
 
-      let forecast: IForecast[] = responseJSON.forecast.forecastday.map(
+      let forecastData: IForecast[] = responseJSON.forecast.forecastday.map(
         (currentForecast: any) => ({
           date: currentForecast.date,
           icon: currentForecast.day.condition.icon,
@@ -73,36 +65,42 @@ const WheatherApi = (prop: props) => {
         })
       );
 
-      setCurrentWeather(currentWeather);
-      setForecasts(forecast);
-    }
-  };
-  useEffect(() => {
-    fetchAPI();
-  }, [prop.city, fetchAPI]);
+      let currentHoursData = {
+        morning: responseJSON.forecast.forecastday[0].hour[5].temp_c,
+        afternoon: responseJSON.forecast.forecastday[0].hour[11].temp_c,
+        night: responseJSON.forecast.forecastday[0].hour[17].temp_c,
+      };
 
-  if (currentWeather.condition === "No matching location found.") {
+      setCurrentWeather(currentWeatherData);
+      setForecasts(forecastData);
+      setCurrentHours(currentHoursData);
+    }
+  }, [city]);
+
+  useEffect(() => {
+    fetchWeatherData();
+    console.log(currentWeather);
+  }, [city, fetchWeatherData]);
+
+  if (error) {
     return (
-      <a
-        href="https://www.iso.org/obp/ui/#search"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {t("weatherAPI.cityError")}
-      </a>
+      <div className="city-not-found">
+        <img src={notFound} alt="" />
+        <strong>
+          <p>{t("weatherAPI.cityError")} <a href="https://www.iso.org/obp/ui/#search" target="_blank" rel="noopener noreferrer">ISO 3166</a>.</p>
+        </strong>
+      </div>
     );
   } else {
-    if (currentWeather.icon.length > 1) {
-      return (
-          <div className="weather-api-container">
-            <Current currentWeather={currentWeather} />
-            <Forecast forecasts={forecasts} />
-          </div>
-      );
-    } else {
-      return <div className="spinner"></div>;
-    }
+    return currentWeather.icon.length > 1 ? (
+      <div className="weather-api-container">
+        <Current currentWeather={currentWeather} currentHours={currentHours} />
+        <Forecast forecasts={forecasts} />
+      </div>
+    ) : (
+      <div className="spinner"></div>
+    );
   }
 };
 
-export default WheatherApi;
+export default WeatherApi;

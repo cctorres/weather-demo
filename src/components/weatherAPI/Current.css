@@ -1,0 +1,40 @@
+.current-weather-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: var(--card-bg-color);
+    border-radius: 2rem;
+    border: solid 1px var(--line-color);
+    box-shadow: 10px 5px 10px var(--line-color);
+    width: 600px;
+    height: 250px;
+}
+
+.current-weather-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.current-weather-info img {
+    width: 100px;
+    height: 100pxpx;
+}
+
+.title {
+    font-size: 3rem;
+}
+
+.day-hours,
+.current-weather-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+@media (max-width: 500px) {
+    .current-weather-container {
+        width: 90vw;
+        margin: 0 auto;
+    }
+}

@@ -1,10 +1,11 @@
 export default interface ICurrentWeather {
-  cityCountry: string;
+  city: string;
+  country: string
   icon: string;
   dt: string;
-  celsius: string;
-  humidity: string;
-  wind: string;
+  celsius: number;
+  humidity: number;
+  wind: number;
   windDir: string;
   condition: string;
 }

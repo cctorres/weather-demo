@@ -8,9 +8,11 @@ import global_es from "./utils/translations/es/global.json";
 import global_zh from "./utils/translations/zh/global.json";
 import "./index.css";
 
+const storedLang = localStorage.getItem("language") || "en";
+
 i18next.init({
   interpolation: { escapeValue: false },
-  lng: "en",
+  lng: storedLang,
   resources: {
     en: {
       global: global_en,

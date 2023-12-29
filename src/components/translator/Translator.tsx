@@ -9,7 +9,7 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 const Translator = () => {
   const [t, i18n] = useTranslation("global");
-  const [lang, setLang] = useState<string>('');
+  const [lang, setLang] = useState<string>(localStorage.getItem("language") || 'en');
 
   const handleChangeLang = (selectedLang: string) => {
     i18n.changeLanguage(selectedLang);

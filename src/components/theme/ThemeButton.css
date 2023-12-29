@@ -12,6 +12,11 @@
   cursor: pointer;
 }
 
+.theme-toggle-dark:hover,
+.theme-toggle-light:hover {
+  box-shadow: 3px 3px 3px 0px rgb(160, 180, 250);
+}
+
 .theme-toggle-light picture,
 .theme-toggle-dark picture {
   height: 30px;
